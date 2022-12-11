@@ -1,11 +1,12 @@
 
 name: CI
 
-on:
-  push:
-    branches:
-      - develop
-  pull_request:
+on: [workflow_dispatch]
+# on:
+#   push:
+#     branches:
+#       - develop
+#   pull_request:
 
 concurrency:
   group: develop-frappe_dev-${{ github.event.number }}
