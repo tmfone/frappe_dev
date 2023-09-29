@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-29 17:07:51.269890",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "remote_instance",
+  "authorization"
+ ],
+ "fields": [
+  {
+   "fieldname": "remote_instance",
+   "fieldtype": "Data",
+   "label": "Remote Instance"
+  },
+  {
+   "fieldname": "authorization",
+   "fieldtype": "Password",
+   "label": "Authorization"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-09-29 17:08:49.899657",
+ "modified_by": "Administrator",
+ "module": "tmf toolbox",
+ "name": "Remote Sync Options",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
