@@ -16,6 +16,9 @@ All feautures should be used on development environments only.
 GET /api/method/frappe_dev.tmf_toolbox.utils.get_whitelisted_methods
 ```
 
+* To sync all doctypes from a remote instance go first to 'Remote Sync Options' there you also have a sync button.
+frappe_dev needs to be installed on the remote instance as well.
+
 ## License
 
 see [LICENSE.md](LICENSE.md)
