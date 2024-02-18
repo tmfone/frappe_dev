@@ -72,5 +72,5 @@ def execute_db_query(query):
 @frappe.whitelist()
 def sync_with_remote_enqueue():
     frappe.enqueue(
-				queue="short",
+				queue="long",
 				method="frappe_dev.tmf_toolbox.utils.sync_with_remote")
