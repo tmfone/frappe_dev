@@ -30,7 +30,7 @@ def sync_with_remote():
     exclude_tables = ['DATEV Settings']
     #include_tables = ['Singles']
     include_tables = ['Series']
-    exclude_modules = ["tmf toolbox","Core", "Custom", "Data Migration", "Desk", "Email", "Integrations","Agriculture","Education","Healthcare","Hotels","Restaurant"]
+    exclude_modules = ["tmf toolbox","Core", "Custom", "Data Migration", "Desk", "Email", "Integrations","Agriculture","Education","Healthcare","Hotels","Restaurant", "Printing", "Automation"]
     tables = frappe.get_list("DocType", fields=["name"], filters={"module": ["not in", exclude_modules],"isSingle": "No"})
     for include in include_tables:
         tables.extend([{'name': include}])
