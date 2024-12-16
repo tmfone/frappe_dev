@@ -13,7 +13,6 @@ def get_whitelisted_methods():
         whitelisted_functions.append(f"{getattr(e, '__module__')}.{getattr(e, '__name__')}")
     return(whitelisted_functions)
 
-
 @frappe.whitelist()
 def sync_with_remote():
     user = frappe.session.user
@@ -38,6 +37,7 @@ def sync_with_remote():
         if x["name"] in exclude_tables:
             continue
         tableName = "tab"+x["name"]
+        print("Syncing table: " + tableName)
         fields = set([c.name for c in frappe.db.get_table_columns_description(tableName)])
         fields = ','.join("`" + field + "`" for field in fields)
         query = """select {fields} from `{table}`""".format(fields=fields,table=tableName)
@@ -49,6 +49,9 @@ def sync_with_remote():
         response = requests.request("POST", url, headers=headers, data=payload)
         #print(response.json())
         if response.status_code == 200 and response.json()['message']:
+            if remote_sync.truncate_tables_before_inserting_data:
+                frappe.db.sql(f"TRUNCATE TABLE `{tableName}`")
+                frappe.db.commit()
             for record in response.json()['message']:
                 values = str(record)
                 values = values.replace("None,","NULL,")
@@ -56,7 +59,6 @@ def sync_with_remote():
                 values = values.replace("[","",1)
                 values = values[:-1]
                 insert_query = """REPLACE INTO `{table}` ({fields}) VALUES ({values})""".format(table=tableName, fields=fields,values=values)
-                #print(insert_query)
                 frappe.db.sql(insert_query)
                 frappe.db.commit()
         elif response.status_code != 200:
@@ -67,7 +69,6 @@ def sync_with_remote():
 @frappe.whitelist()
 def execute_db_query(query):
     return(frappe.db.sql(query))
-
 
 @frappe.whitelist()
 def sync_with_remote_enqueue():

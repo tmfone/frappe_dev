@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "remote_instance",
-  "authorization"
+  "authorization",
+  "truncate_tables_before_inserting_data"
  ],
  "fields": [
   {
@@ -19,11 +20,17 @@
    "fieldname": "authorization",
    "fieldtype": "Password",
    "label": "Authorization"
+  },
+  {
+   "default": "0",
+   "fieldname": "truncate_tables_before_inserting_data",
+   "fieldtype": "Check",
+   "label": "Truncate tables before inserting data"
   }
  ],
  "issingle": 1,
  "links": [],
- "modified": "2023-09-29 17:08:49.899657",
+ "modified": "2024-12-16 19:41:01.265091",
  "modified_by": "Administrator",
  "module": "tmf toolbox",
  "name": "Remote Sync Options",
@@ -41,5 +48,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }
