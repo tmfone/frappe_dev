@@ -60,7 +60,8 @@ def sync_with_remote():
                 values = values[:-1]
                 insert_query = """REPLACE INTO `{table}` ({fields}) VALUES ({values})""".format(table=tableName, fields=fields,values=values)
                 frappe.db.sql(insert_query)
-                frappe.db.commit()
+            print("Synced table: " + tableName)
+            frappe.db.commit()
         elif response.status_code != 200:
             print("Could not fetch data from remote for table: `" + tableName + "`")
             print("Query was: " + query)
